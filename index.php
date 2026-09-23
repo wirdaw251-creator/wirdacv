@@ -1,0 +1,250 @@
+<?php
+$pesan_status = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['btn_kirim'])) {
+
+    $nama = htmlspecialchars($_POST['txt_nama']);
+    $email = htmlspecialchars($_POST['txt_email']);
+    $pesan = htmlspecialchars($_POST['txt_pesan']);
+
+    if (!empty($nama) && !empty($email) && !empty($pesan)) {
+
+        $pesan_status = "<div class='alert-success'>
+            Terima kasih <strong>$nama</strong>, pesan Anda telah berhasil dikirim ke server SMKN 5 BATAM!
+        </div>";
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CV Wirda - SMKN 5 BATAM</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+
+        <div class="profile-info">
+
+            <div class="avatar"></div>
+
+            <div>
+                <h1 style="margin: 0;">Wirda</h1>
+
+                <p style="margin: 5px 0 0 0; color: gray;">
+                    Siswa Teknik Komputer & Jaringan SMKN 5 BATAM
+                </p>
+            </div>
+
+        </div>
+
+        <nav>
+            <a href="#profil">Home</a>
+            <a href="#skills">Skills</a>
+            <a href="#kontak">Contact</a>
+
+            <button id="btn-theme" onclick="toggleTheme()">🌑 Dark Mode</button>
+        </nav>
+
+    </header>
+
+
+    <div class="main-content">
+
+        <!-- PROFIL -->
+        <div class="left-column">
+
+            <div class="card" id="profil">
+
+                <h2>PROFIL</h2>
+
+                <h3>👤 BIODATA</h3>
+
+                <p>
+                    Siswa yang aktif dalam pembelajaran di bidang
+                    Teknik Komputer & Jaringan dengan mengikuti semua
+                    bidang mata pelajaran yang diajarkan tentang jaringan.
+                </p>
+
+                <h3>🎓 PENDIDIKAN</h3>
+
+                <ul>
+                    <li>TK : Raudhatul</li>
+                    <li>SD : Al-Barkah</li>
+                    <li>SMP : Ponpes Al-Ustmaniyah</li>
+                    <li>SMK : Siswa Aktif SMKN 5 Batam</li>
+                </ul>
+
+                <h3>📚 PENGALAMAN BELAJAR</h3>
+
+                <ul>
+                    <li>Belajar Crimping Cable</li>
+                    <li>Belajar Merakit PC</li>
+                    <li>Setting Mikrotik</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <!-- SKILLS DAN KONTAK -->
+        <div class="right-column">
+
+            <div class="card" id="skills">
+
+                <h2>🛜 NETWORK SKILLS</h2>
+
+                <ul>
+                    <li>Crimping Cable</li>
+                    <li>Mikrotik Router</li>
+                    <li>Cisco Networking</li>
+                </ul>
+
+
+                <div class="skill-item">
+
+                    <span class="skill-name">
+                        Mikrotik RouterOS
+                    </span>
+
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 90%;"></div>
+                    </div>
+
+                </div>
+
+
+                <div class="skill-item">
+
+                    <span class="skill-name">
+                        Cisco Networking
+                    </span>
+
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%;"></div>
+                    </div>
+
+                </div>
+
+
+                <div class="skill-item">
+
+                    <span class="skill-name">
+                        Linux Server (Debian/Ubuntu)
+                    </span>
+
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 80%;"></div>
+                    </div>
+
+                </div>
+
+
+                <div class="skill-item">
+
+                    <span class="skill-name">
+                        Network Security
+                    </span>
+
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%;"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FORM KONTAK -->
+            <div class="card" id="kontak">
+
+                <h2>FORM KONTAK</h2>
+
+                <?php echo $pesan_status; ?>
+
+                <form method="POST" action="">
+
+                    <div class="form-group">
+
+                        <label for="nama">
+                            Nama Lengkap:
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nama"
+                            name="txt_nama"
+                            placeholder="Masukkan nama lengkap..."
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email:
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="txt_email"
+                            placeholder="Masukkan email..."
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="pesan">
+                            Pesan:
+                        </label>
+
+                        <textarea
+                            id="pesan"
+                            name="txt_pesan"
+                            rows="4"
+                            placeholder="Tuliskan pesan..."
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        name="btn_kirim"
+                        class="btn-submit"
+                    >
+                        KIRIM PESAN
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
